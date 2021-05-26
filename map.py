@@ -8,6 +8,13 @@ class Map:
         self.microsoft = 0
         self.academy = 0
         
-    def microfsoft(x):
+    def microfsoft(self, x):
         if x == 1:
             print('Você é muito burro pra trabalhar na Microsoft, vai estudar!')
+    def build(self):
+        job = int(input('''deseja trabalhar?
+        [ 1 ] sim
+        [ 0 ] não
+        --> : '''))
+        if job == 1:
+            print ()
