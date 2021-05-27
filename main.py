@@ -1,6 +1,11 @@
 from player import Steve
-jogador = Steve()
-jogador.study()
-if jogador.energy == 9:
-    jogador.die()
+jogador = Steve() #AQUI A GENTE ASSOCIA OS ATRIBUTOS DA CLASSE AO JOGADOR
+#Verifique na classe que algumas variáveis iniciam zeradas e outras full, exemplo: fome: 0 e energia: 10
+
+#SUPONHAMOS QUE O JOGADOR FOI ATÉ A ESCOLA E ESCOLHEU ESTUDAR:
+jogador.study() #NESSE MOMENTO A GENTE CHAMA O METODO ESTUDAR (.study) PARA ESSE JOGADOR
+
+#AO RODAR O CÓDIGO, PERCEBA QUE ALGUNS ATRIBUTOS DO JOGADOR 
+# VÃO AUMENTAR E OUTROS VÃO DIMINUIR, DE ACORDO COM O MÉTODO INVOCADO, -
+# - COMO A ENERGIA POR EXEMPLO.
     

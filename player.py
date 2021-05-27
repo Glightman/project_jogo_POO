@@ -8,9 +8,6 @@ class Steve:
         self.smart = 0
         self.depression = 0
 
-    #def decor():
-        #print('-='*20)
-
     def die(self):
         if self.energy == 0 or self.hungr == 20 or self.thirst == 20 or self.depression == 20:
             print('Game Over!')
