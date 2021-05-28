@@ -19,26 +19,11 @@ mapa = int(input('''ACESSAR MAPA PARA INICIAR O JOGO?
 [ 1 ] SIM
 [ 0 ] NÃO (sair)
 --> : '''))
-while True:
-    if mapa == 1 :
-        opcao = int(input('''ESTES SÃO SEUS AMBIENTES:
-        [ 1 ]  CASA
-        [ 2 ]  BAR
-        [ 3 ]  MERCADO
-        [ 4 ]  ESCOLA
-        [ 5 ]  RESTAURANTE
-        [ 6 ]  TRABALHO
-        [ 7 ]  ACADEMIA
-        [ 0 ]  SAIR
-        --> : '''))
-        if opcao == 0:
-            decor()
-            print('VOCÊ SAIU DO JOGO')
-            decor()
-            break
-        if opcao == 1:
-            personagem.casa()
-            personagem.Comer
+if mapa == 1:
+    personagem.opcao()
+   
+        
+      
                
             
     
