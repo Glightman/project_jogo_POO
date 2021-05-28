@@ -10,6 +10,8 @@ class Steve:
         self.inteligência = 5
         self.comida = 10
         self.remedio = 10
+        
+       
     
     def decor(self):
         print('-=' * 20)
@@ -38,8 +40,11 @@ class Steve:
     def morrer(self):
         if self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
             print('FIM DO JOGO, VOCÊ MORREU :X ')
-           
-      
+    
+    def beberVinho(self):
+        relogio.avancaTempo(40)
+        self.energia += 1
+        self.saúde += 1    
     
     
     def Comer( self):
@@ -74,6 +79,16 @@ class Steve:
         self.fome += 2
         self.sede += 2 
         self.saúde += 2
+    def mercado(self):
+        per = int(input('''VOCÊ CHEGOU AO MERCADO
+        O TOTAL DE SUA COMPRA É DE R$ 100,00
+        VOCÊ TEM ESSE VALOR DISPONÍVEL?
+        [ 1 ] SIM
+        [ 2 ] MOSTRAR SEUS ATRIBUTOS
+        [ 3 ]NÃO/SAIR
+        '''))
+        if self.dinheiro < 100 :
+            print('VOCÊ NÃO TEM DINHEIRO SUFICIENTE PARA FINALIZAR SUA COMPRA')
     def Comprar(self):
         relogio.avancaTempo(60)
         self.energia -= 0.5
@@ -118,7 +133,12 @@ class Steve:
             --> : '''))
             if opcao == 1 :
                 self.casa()
+            elif opcao == 2:
+                self.bar()
         self.morrer()            
+    
+    
+    
     def casa(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
             self.morrer()
@@ -157,6 +177,25 @@ class Steve:
                 self.decor()
                 break
         self.morrer()
+
+    def bar(self):
+        while True:
+            per = int(input('''SEJA BEM VINDO
+            TEMOS APENAS VINHO EM NOSSO CARDÁPIO.
+            POSSO SERVI LO
+            [ 1 ] SIM
+            [ 2 ] MOSTRAR SEUS ATRIBUTOS
+            [ 3 ] NÃO/SAIR
+            '''))
+            if per == 1:
+                self.beberVinho()
+            elif per == 2:
+                self.dados()
+            else:
+                break
+
+
+
 
 
             
