@@ -14,16 +14,14 @@ class Steve:
      #AÇÕES ATRIBUÍDAS AO JOGADOR:
 
     def dados(self):
-        print('-='*30)
-        print(f'''           \033[1m\033[33mSEUS ATRIBUTOS SÃO:\033[04;37m
+        return f'''           \033[1m\033[33mSEUS ATRIBUTOS SÃO:\033[04;37m
         \033[1m\033[04;37m[ENERGIA      -->  {self.energia}/20]
         [SEDE         -->  {self.sede}/10]
         [FOME         -->  {self.fome}/10]
         [SAÚDE        -->  {self.saúde}/10]
         [DINHEIRO     -->  {self.dinheiro}/10]
         [INTELÍGÊNCIA -->  {self.inteligência}/10]
-        [SUPRIMENTOS  -->  {self.comida}/ 10]\033[04;37m''')   
-        print('-='*30)
+        [SUPRIMENTOS  -->  {self.comida}/ 10]\033[04;37m'''
     
     def decor(self):
         print('-='*30)
