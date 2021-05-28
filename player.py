@@ -14,20 +14,19 @@ class Steve:
      #AÇÕES ATRIBUÍDAS AO JOGADOR:
 
     def dados(self):
-        print(f'''
-        SEUS ATRIBUTOS SÃO:
-        {self.decor}
-        [ENERGIA      -->  {self.energia}/20]
+        print('-='*30)
+        print(f'''           \033[1m\033[33mSEUS ATRIBUTOS SÃO:\033[04;37m
+        \033[1m\033[04;37m[ENERGIA      -->  {self.energia}/20]
         [SEDE         -->  {self.sede}/10]
         [FOME         -->  {self.fome}/10]
         [SAÚDE        -->  {self.saúde}/10]
         [DINHEIRO     -->  {self.dinheiro}/10]
         [INTELÍGÊNCIA -->  {self.inteligência}/10]
-        [SUPRIMENTOS  -->  {self.comida}/ 10]
-        {self.decor}''')   
+        [SUPRIMENTOS  -->  {self.comida}/ 10]\033[04;37m''')   
+        print('-='*30)
     
     def decor(self):
-        print('-=' * 20)
+        print('-='*30)
     
     def ler(self):
         relogio.avancaTempo(35)
