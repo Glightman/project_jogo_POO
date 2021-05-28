@@ -69,8 +69,9 @@ class Steve:
             [ 6 ] DORMIR
             [ 0 ] VOLTAR
             --> : '''))
-            if casas == 0:
-                break
+            if casas == 1 :
+                self.Comer()        
+          
            
             
     

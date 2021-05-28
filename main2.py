@@ -38,6 +38,7 @@ while True:
             break
         if opcao == 1:
             personagem.casa()
+            personagem.Comer
                
             
     
