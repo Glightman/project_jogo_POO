@@ -10,8 +10,21 @@ class Steve:
         self.inteligência = 5
         self.comida = 10
         self.remedio = 10
-        
-       
+
+     #AÇÕES ATRIBUÍDAS AO JOGADOR:
+
+    def dados(self):
+        print(f'''
+        SEUS ATRIBUTOS SÃO:
+        {self.decor}
+        [ENERGIA      -->  {self.energia}/20]
+        [SEDE         -->  {self.sede}/10]
+        [FOME         -->  {self.fome}/10]
+        [SAÚDE        -->  {self.saúde}/10]
+        [DINHEIRO     -->  {self.dinheiro}/10]
+        [INTELÍGÊNCIA -->  {self.inteligência}/10]
+        [SUPRIMENTOS  -->  {self.comida}/ 10]
+        {self.decor}''')   
     
     def decor(self):
         print('-=' * 20)
@@ -20,23 +33,6 @@ class Steve:
         relogio.avancaTempo(35)
         self.inteligência += 2
     
-    def dados(self):
-        print(f'''
-        Você no momento esta com:
-        [{self.energia}/20]  de Energia
-        [{self.sede}/10]  de Sede
-        [{self.fome}/10]  de Fome
-        [{self.saúde}/10]  de Saúde
-        [{self.dinheiro}/10]  de Dinheiro
-        [{self.inteligência}/10]  de Inteligência
-        [{self.comida}/ 10]  de Alimentos em casa    
-        
-        ''')
-    print(dados)
-
-    #def alimento(self ):
-     #  self.comida -= 2
-
     def morrer(self):
         if self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
             print('FIM DO JOGO, VOCÊ MORREU :X ')
@@ -46,8 +42,7 @@ class Steve:
         self.energia += 1
         self.saúde += 1    
     
-    
-    def Comer( self):
+    def comer(self):
         relogio.avancaTempo(35)
         self.fome -= 2
         self.saúde += 0.5
@@ -55,8 +50,7 @@ class Steve:
         if self.fome == 9:
             print('SE VOCÊ NÃO SE ALIMENTAR IRÁ MORRER')  
       
-    
-    def Beber (self):
+    def beber(self):
         relogio.avancaTempo(5)
         if self.sede > 1 :
             self.sede -= 2
@@ -66,34 +60,26 @@ class Steve:
         else:
             print('VOCÊ NÃO ESTÁ COM SEDE.')
         
-       
-    def Estudar(self):
+    def estudar(self):
         relogio.avancaTempo(240)
         self.energia -= 4
         self.fome += 2
         self.sede += 2
         self.inteligência += 3
-    def Malhar (self):
+    
+    def malhar(self):
         relogio.avancaTempo(60)
         self.energia -= 3
         self.fome += 2
         self.sede += 2 
         self.saúde += 2
-    def mercado(self):
-        per = int(input('''VOCÊ CHEGOU AO MERCADO
-        O TOTAL DE SUA COMPRA É DE R$ 100,00
-        VOCÊ TEM ESSE VALOR DISPONÍVEL?
-        [ 1 ] SIM
-        [ 2 ] MOSTRAR SEUS ATRIBUTOS
-        [ 3 ]NÃO/SAIR
-        '''))
-        if self.dinheiro < 100 :
-            print('VOCÊ NÃO TEM DINHEIRO SUFICIENTE PARA FINALIZAR SUA COMPRA')
+    
     def Comprar(self):
         relogio.avancaTempo(60)
         self.energia -= 0.5
         self.dinheiro -= 100
         self.comida += 2
+    
     def Trabalhar(self):
         relogio.avancaTempo(540)
         self.energia -= 2
@@ -101,16 +87,17 @@ class Steve:
         self.sede += 1
         self.saúde -= 1
         self.dinheiro += 120
-    def sono(self):
+    
+    def soneca(self):
         relogio.avancaTempo(30)
         self.energia += 5
     
-    def Medicacao(self):
+    def remedio(self):
         relogio.avancaTempo(2)
         self.saúde += 1
         self.remedio -= 1
     
-    def Dormir(self):
+    def dormir(self):
         relogio.avancaTempo(540)
         self.saúde += 2
         self.energia = 0
@@ -118,9 +105,10 @@ class Steve:
         if self.fome == 5:
             self.fome += 5
     
+    #AMBIENTES EM QUE O JOGADOR PODE ENTRAR E ESCOLHER AS SUAS AÇÕES:
+
     def opcao(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:  
-
             opcao = int(input('''ESTES SÃO SEUS AMBIENTES:
             [ 1 ]  CASA
             [ 2 ]  BAR
@@ -137,12 +125,20 @@ class Steve:
                 self.bar()
         self.morrer()            
     
-    
+    def mercado(self):
+        per = int(input('''VOCÊ CHEGOU AO MERCADO!
+        O TOTAL DE SUA COMPRA É DE R$ 100,00
+        DESEJA EFETUAR A COMPRA?
+        [ 1 ] SIM
+        [ 2 ] MOSTRAR SEUS ATRIBUTOS
+        [ 3 ] NÃO/VOLTAR
+        --> : '''))
+        if self.dinheiro < 100 :
+            print('VOCÊ NÃO TEM DINHEIRO SUFICIENTE PARA FINALIZAR SUA COMPRA')
     
     def casa(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
-            self.morrer()
-            casas = int(input('''ESSAS SÃO SUAS OPÇÕES NA CASA:
+            casa = int(input('''ESSAS SÃO SUAS OPÇÕES NA CASA:
             [ 1 ] COMER
             [ 2 ] BEBER ÁGUA
             [ 3 ] TOMAR REMÉDIO
@@ -152,24 +148,19 @@ class Steve:
             [ 7 ] MOSTRAR SEUS ATRIBUTOS
             [ 0 ] VOLTAR
             --> : '''))
-            if casas == 1 :
-                self.Comer()
-        
-            elif casas == 2:
-                self.Beber()
-                   
-            elif casas == 3:
-                self.Medicacao()
-               
-            elif casas == 4:
-                self.ler()
-                
-            elif casas == 5:
-                self.sono()
-               
-            elif casas == 6:
-                self.Dormir()
-            elif casas == 7:
+            if casa == 1 :
+                self.comer()
+            elif casa == 2:
+                self.beber()   
+            elif casa == 3:
+                self.remedio()   
+            elif casa == 4:
+                self.ler()    
+            elif casa == 5:
+                self.sono()  
+            elif casa == 6:
+                self.dormir()
+            elif casa == 7:
                 self.dados()
             else:
                 self.decor()
