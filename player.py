@@ -14,14 +14,15 @@ class Steve:
      #AÇÕES ATRIBUÍDAS AO JOGADOR:
 
     def dados(self):
-        return f'''           \033[1m\033[33mSEUS ATRIBUTOS SÃO:\033[04;37m
+        print(f'''           \033[1m\033[33mSEUS ATRIBUTOS SÃO:\033[04;37m
         \033[1m\033[04;37m[ENERGIA      -->  {self.energia}/20]
         [SEDE         -->  {self.sede}/10]
         [FOME         -->  {self.fome}/10]
         [SAÚDE        -->  {self.saúde}/10]
         [DINHEIRO     -->  {self.dinheiro}/10]
         [INTELÍGÊNCIA -->  {self.inteligência}/10]
-        [SUPRIMENTOS  -->  {self.comida}/ 10]\033[04;37m'''
+        [SUPRIMENTOS  -->  {self.comida}/ 10]
+        [REMÉDIOS     -->  {self.remedio}/10]\033[04;37m''')
     
     def decor(self):
         print('-='*30)
@@ -89,7 +90,7 @@ class Steve:
         relogio.avancaTempo(30)
         self.energia += 5
     
-    def remedio(self):
+    def remedio1(self):
         relogio.avancaTempo(2)
         self.saúde += 1
         self.remedio -= 1
@@ -139,15 +140,15 @@ class Steve:
             elif casa == 2:
                 self.beber()   
             elif casa == 3:
-                self.remedio()   
+                self.remedio1()   
             elif casa == 4:
                 self.ler()    
             elif casa == 5:
-                self.sono()  
+                self.soneca()  
             elif casa == 6:
                 self.dormir()
             elif casa == 7:
-                print(self.dados())
+                self.dados()
             else:
                 self.decor()
                 print('VOCÊ SAIU DO JOGO')
