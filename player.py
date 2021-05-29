@@ -121,6 +121,8 @@ class Steve:
                 self.casa()
             elif opcao == 2:
                 self.restaurante()
+            elif opcao == 3:
+                self.mercado()
         self.morrer()   
 
     def casa(self):
@@ -173,15 +175,54 @@ class Steve:
                 break
 
     def mercado(self):
-        per = int(input('''VOCÊ CHEGOU AO MERCADO!
-        O TOTAL DE SUA COMPRA É DE R$ 100,00
-        DESEJA EFETUAR A COMPRA?
-        [ 1 ] SIM
-        [ 2 ] MOSTRAR SEUS ATRIBUTOS
-        [ 3 ] NÃO/VOLTAR
-        --> : '''))
-        if self.dinheiro < 100 :
-            print('VOCÊ NÃO TEM DINHEIRO SUFICIENTE PARA FINALIZAR SUA COMPRA')
+        print('VOCÊ CHEGOU AO MERCADO!')
+        
+        ce = 0
+        ag = 0
+        while True:
+            per = int(input('''
+            
+            TEMOS AS OPÇÕES ABAIXO:
+            [ 1 ]    CESTA BÁSICA ......................R$ 80,00
+            [ 2 ]    FARDO COM 8 GARRAFAS DE ÁGUA.......R$ 15,00
+            [ 3 ]    FINALIZAR A COMPRA
+            [ 4 ] NÃO/VOLTAR
+            --> : '''))
+            somar = (ce * 80.0) + ( ag * 15.0)
+            if per == 1:
+                ce += 1
+            elif per == 2:
+                ag +=1
+            elif per == 3:
+                print(ce, ag)
+                per1 = int(input(f'''
+                O VALOR TOTAL DE SUA COMPRA É DE R$ {somar:.2f}
+                DESEJA CONTINUAR?
+                [ 1 ] SIM
+                [ 2 ] NÃO
+                '''))
+                if per1 == 1 :
+                    if self.dinheiro < somar :
+                        per2 = int(input(f'''
+                    VOCÊ NÃO TEM DINHEIRO SUFICIENTE PARA FINALIZAR SUA COMPRA
+                    SEU SALDO ATUAL É DE R$ {self.dinheiro:.2f}
+                    DESEJA REVER O PEDIDO?
+                    [ 1 ] SIM
+                    [ 2 ] NÃO
+                    '''))
+                    if per2 == 1 :
+                       ce = 0
+                       ag = 0
+                    else:
+                        print('OBRIGADA E VOLTE SEMPRE!')
+            elif per  == 4 :
+                print( self.map())              
+
+                    
+            else:
+                print('OPÇÃO INVÁLIDA')
+
+        
     
     def escola(self):
         parar = 0
