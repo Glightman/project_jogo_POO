@@ -117,7 +117,7 @@ class Steve:
             [ 0 ]  SAIR
             --> : '''))
             if opcao == 1 :
-                self.casa
+                self.casa()
             elif opcao == 2:
                 self.bar()
         self.morrer()   
@@ -147,7 +147,7 @@ class Steve:
             elif casa == 6:
                 self.dormir()
             elif casa == 7:
-                self.dados()
+                print(self.dados())
             else:
                 self.decor()
                 print('VOCÊ SAIU DO JOGO')

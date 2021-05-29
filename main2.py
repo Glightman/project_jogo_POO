@@ -18,7 +18,7 @@ mapa = int(input('''ACESSAR MAPA PARA INICIAR O JOGO?
 [ 0 ] NÃO (sair)
 --> : '''))
 if mapa == 1:
-    personagem.opcao()
+    personagem.map()
    
         
       
