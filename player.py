@@ -198,3 +198,23 @@ class Steve:
                 parar += 1
             else:
                 print('Esta opção não é válida, tente outra: ')
+
+    def academia(self):
+            parar = 0
+            while parar == 0:
+                opt = int(input('''SEJA BEM VINDO A ACADEMIA PY'FIT
+                    [ 1 ] Malhar
+                    [ 2 ] Beber água
+                    [ 3 ] Mostrar atributos
+                    [ 4 ] Voltar
+                    --> : '''))
+                if opt == 1:
+                    self.malhar
+                elif opt == 2:
+                    self.beber
+                elif opt == 3:
+                    self.dados
+                elif opt == 4:
+                    parar += 1
+                else:
+                    print('Esta opção não é válida, tente outra: ')
