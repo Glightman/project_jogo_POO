@@ -3,6 +3,8 @@ from relogio import Relogio
 personagem = Steve()
 relogio = Relogio()
 dia = 1
+
+
 def decor():
     print('-='*30)
 decor()

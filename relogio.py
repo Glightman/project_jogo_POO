@@ -11,6 +11,8 @@ class Relogio:
         while(self.minutos >= 60):
             self.minutos -= 60
             self.horas += 1
-    
+    def horas(self):
+       return self.horas
+
     def atrasado(self):
         return (self.horas > 7 or (self.horas == 7 and self.minutos > 0))
