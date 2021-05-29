@@ -183,10 +183,18 @@ class Steve:
             print('VOCÊ NÃO TEM DINHEIRO SUFICIENTE PARA FINALIZAR SUA COMPRA')
     
     def escola(self):
-        opt = int(input('''SEJA BEM VINDO AO PY'SCHOOL
-        [ 1 ] Estudar
-        [ 2 ] Beber água
-        [ 3 ] Voltar
-        --> : '''))
-        if opt == 1:
-            self.estudar
+        parar = 0
+        while parar == 0:
+            opt = int(input('''SEJA BEM VINDO AO PY'SCHOOL
+            [ 1 ] Estudar
+            [ 2 ] Beber água
+            [ 3 ] Voltar
+            --> : '''))
+            if opt == 1:
+                self.estudar
+            elif opt == 2:
+                self.beber
+            elif opt == 3:
+                parar += 1
+            else:
+                print('Esta opção não é válida, tente outra: ')
