@@ -109,10 +109,10 @@ class Steve:
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:  
             opcao = int(input('''ESTES SÃO SEUS AMBIENTES:
             [ 1 ]  CASA
-            [ 2 ]  BAR
+            [ 2 ]  RESTAURANTE
             [ 3 ]  MERCADO
             [ 4 ]  ESCOLA
-            [ 5 ]  RESTAURANTE
+            [ 5 ]  BAR
             [ 6 ]  TRABALHO
             [ 7 ]  ACADEMIA
             [ 0 ]  SAIR
