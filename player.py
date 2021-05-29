@@ -102,9 +102,9 @@ class Steve:
         if self.fome == 5:
             self.fome += 5
     
-    #AMBIENTES EM QUE O JOGADOR PODE ENTRAR E ESCOLHER AS SUAS AÇÕES:
+#AMBIENTES EM QUE O JOGADOR PODE ENTRAR E ESCOLHER AS SUAS AÇÕES:
 
-    def opcao(self):
+    def map(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:  
             opcao = int(input('''ESTES SÃO SEUS AMBIENTES:
             [ 1 ]  CASA
@@ -117,22 +117,11 @@ class Steve:
             [ 0 ]  SAIR
             --> : '''))
             if opcao == 1 :
-                self.casa()
+                self.casa
             elif opcao == 2:
                 self.bar()
-        self.morrer()            
-    
-    def mercado(self):
-        per = int(input('''VOCÊ CHEGOU AO MERCADO!
-        O TOTAL DE SUA COMPRA É DE R$ 100,00
-        DESEJA EFETUAR A COMPRA?
-        [ 1 ] SIM
-        [ 2 ] MOSTRAR SEUS ATRIBUTOS
-        [ 3 ] NÃO/VOLTAR
-        --> : '''))
-        if self.dinheiro < 100 :
-            print('VOCÊ NÃO TEM DINHEIRO SUFICIENTE PARA FINALIZAR SUA COMPRA')
-    
+        self.morrer()   
+
     def casa(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
             casa = int(input('''ESSAS SÃO SUAS OPÇÕES NA CASA:
@@ -182,16 +171,22 @@ class Steve:
             else:
                 break
 
-
-
-
-
-            
+    def mercado(self):
+        per = int(input('''VOCÊ CHEGOU AO MERCADO!
+        O TOTAL DE SUA COMPRA É DE R$ 100,00
+        DESEJA EFETUAR A COMPRA?
+        [ 1 ] SIM
+        [ 2 ] MOSTRAR SEUS ATRIBUTOS
+        [ 3 ] NÃO/VOLTAR
+        --> : '''))
+        if self.dinheiro < 100 :
+            print('VOCÊ NÃO TEM DINHEIRO SUFICIENTE PARA FINALIZAR SUA COMPRA')
     
-
-
-
- 
-  
-  
-
+    def escola(self):
+        opt = int(input('''SEJA BEM VINDO AO PY'SCHOOL
+        [ 1 ] Estudar
+        [ 2 ] Beber água
+        [ 3 ] Voltar
+        --> : '''))
+        if opt == 1:
+            self.estudar
