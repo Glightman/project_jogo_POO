@@ -228,10 +228,12 @@ class Steve:
 
         print('-=' * 30)
         print('Você chegou ao trabalho')
+        relogio.avancaTempo(540)
         for i in range(3):
             time.sleep(2)
             print('Trabalhando...')
-        print("Fim do expediente! Escolha para onde ir")
+        print("Fim do expediente! Escolha para onde ir\n")
+        print("São "+str(relogio)+" do dia "+str(dia)+". ")
         self.dinheiro += 1
 
         self.Trabalhar()
@@ -372,8 +374,9 @@ class Steve:
                         print(f'''
                         VOCÊ POSSUI  R${self.dinheiro:.2f} EM 
                         SUA CONTA, E NÃO É SUFICIENTE PARA FINALIZAR
-                        O PEDIDO.
-                        ''')           
+                        O PEDIDO.                        
+                        ''')       
+                        print("SÃO "+str(relogio)+" DO DIA "+str(dia)+". ")    
                         break         
                     else:
                         bife = 0 
