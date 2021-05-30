@@ -27,6 +27,14 @@ class Steve:
     def decor(self):
         print('-='*30)
     
+    def mostraAcao(self, acao):
+        print('-=' * 40)
+        import time
+        for i in range(3):
+            time.sleep(1.5)
+            print(f'Você está {acao}...')
+        print('-=' * 40)
+        
     def ler(self):
         relogio.avancaTempo(35)
         self.inteligência += 2
@@ -48,12 +56,17 @@ class Steve:
         if self.fome == 9:
             print('SE VOCÊ NÃO SE ALIMENTAR IRÁ MORRER')
         
+        self.mostraAcao('comendo')
+        """
+        print('-=' *  40)
         for i in range(3):
             import time
-            print('Você está comendo')
+            
+            print('Você está comendo...')
             time.sleep(2)
-        print(f'Você acabou de comer! ')
-        self.dados()
+        print(f'Você acabou de comer!')
+        print('-=' *  40)
+"""
 
     def beber(self):
         relogio.avancaTempo(5)
@@ -140,7 +153,7 @@ class Steve:
 
     def casa(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
-            casa = int(input('''ESSAS SÃO SUAS OPÇÕES NA CASA:
+            casa = int(input(f'''SÃO {Relogio()} HORA E ESSAS SÃO SUAS OPÇÕES NA CASA:
             [ 1 ] COMER
             [ 2 ] BEBER ÁGUA
             [ 3 ] TOMAR REMÉDIO
@@ -342,37 +355,36 @@ class Steve:
             elif opcao == 4:
                 agua += 1
             elif opcao == 5:
-                while True:
-                    per = int(input(f'''VOCÊ CONFIRMA O PEDIDO?
+                per = int(input(f'''VOCÊ CONFIRMA O PEDIDO?
 
-                    [ {bife} ] PF BIFE COM BATATA FRITA
-                    [ {frango} ] PF FRANGO A PASSARINHO
-                    [ {suco} ] SUCO DE LARANJA  500ML
-                    [ {agua} ] ÁGUA  500ML     
+                [ {bife} ] PF BIFE COM BATATA FRITA
+                [ {frango} ] PF FRANGO A PASSARINHO
+                [ {suco} ] SUCO DE LARANJA  500ML
+                [ {agua} ] ÁGUA  500ML     
 
-            
-                    [ 1 ] SIM
-                    [ 0 ] NÃO
-                    '''))
-                    if per == 1:
-                        print(f'''
-                        SEU PEDIDO SERÁ PREPARADO, 
-                        APÓS A CONFIRMAÇÃO DE PAGAMENTO
-                        O VALOR TOTAL É DE R$ {soma:.2f}
-                        ''')
-                    if per == 1 and self.dinheiro < soma :
-                        print(f'''
-                        VOCÊ POSSUI  R${self.dinheiro:.2f} EM 
-                        SUA CONTA, E NÃO É SUFICIENTE PARA FINALIZAR
-                        O PEDIDO.
-                        ''')           
-                        break         
-                    else:
-                        bife = 0 
-                        frango = 0
-                        suco = 0 
-                        agua = 0 
-            elif opcao == 0 :
+           
+                [ 1 ] SIM
+                [ 0 ] NÃO
+                '''))
+                if per == 1:
+                    print(f'''
+                    SEU PEDIDO SERÁ PREPARADO, 
+                    APÓS A CONFIRMAÇÃO DE PAGAMENTO
+                    O VALOR TOTAL É DE R$ {soma:.2f}
+                    ''')
+                if per == 1 and self.dinheiro < soma :
+                    print(f'''
+                    VOCÊ POSSUI  R${self.dinheiro:.2f} EM 
+                    SUA CONTA, E NÃO É SUFICIENTE PARA FINALIZAR
+                    O PEDIDO.
+                    ''')           
+                    break         
+                else:
+                    bife = 0 
+                    frango = 0
+                    suco = 0 
+                    agua = 0 
+            elif per == 0 :
                 print('VOLTE SEMPRE')
                 break                   
             else:
