@@ -342,36 +342,37 @@ class Steve:
             elif opcao == 4:
                 agua += 1
             elif opcao == 5:
-                per = int(input(f'''VOCÊ CONFIRMA O PEDIDO?
+                while True:
+                    per = int(input(f'''VOCÊ CONFIRMA O PEDIDO?
 
-                [ {bife} ] PF BIFE COM BATATA FRITA
-                [ {frango} ] PF FRANGO A PASSARINHO
-                [ {suco} ] SUCO DE LARANJA  500ML
-                [ {agua} ] ÁGUA  500ML     
+                    [ {bife} ] PF BIFE COM BATATA FRITA
+                    [ {frango} ] PF FRANGO A PASSARINHO
+                    [ {suco} ] SUCO DE LARANJA  500ML
+                    [ {agua} ] ÁGUA  500ML     
 
-           
-                [ 1 ] SIM
-                [ 0 ] NÃO
-                '''))
-                if per == 1:
-                    print(f'''
-                    SEU PEDIDO SERÁ PREPARADO, 
-                    APÓS A CONFIRMAÇÃO DE PAGAMENTO
-                    O VALOR TOTAL É DE R$ {soma:.2f}
-                    ''')
-                if per == 1 and self.dinheiro < soma :
-                    print(f'''
-                    VOCÊ POSSUI  R${self.dinheiro:.2f} EM 
-                    SUA CONTA, E NÃO É SUFICIENTE PARA FINALIZAR
-                    O PEDIDO.
-                    ''')           
-                    break         
-                else:
-                    bife = 0 
-                    frango = 0
-                    suco = 0 
-                    agua = 0 
-            elif per == 0 :
+            
+                    [ 1 ] SIM
+                    [ 0 ] NÃO
+                    '''))
+                    if per == 1:
+                        print(f'''
+                        SEU PEDIDO SERÁ PREPARADO, 
+                        APÓS A CONFIRMAÇÃO DE PAGAMENTO
+                        O VALOR TOTAL É DE R$ {soma:.2f}
+                        ''')
+                    if per == 1 and self.dinheiro < soma :
+                        print(f'''
+                        VOCÊ POSSUI  R${self.dinheiro:.2f} EM 
+                        SUA CONTA, E NÃO É SUFICIENTE PARA FINALIZAR
+                        O PEDIDO.
+                        ''')           
+                        break         
+                    else:
+                        bife = 0 
+                        frango = 0
+                        suco = 0 
+                        agua = 0 
+            elif opcao == 0 :
                 print('VOLTE SEMPRE')
                 break                   
             else:
