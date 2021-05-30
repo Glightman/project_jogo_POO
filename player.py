@@ -127,6 +127,8 @@ class Steve:
                 self.escola()
             elif opcao == 5:
                 self.bar()
+            elif opcao == 6:
+                self.trabalho()
         self.morrer()   
 
     def casa(self):
@@ -205,6 +207,19 @@ class Steve:
                 self.dados()
             else:
                 break
+  
+    def trabalho(self):
+        import time
+
+        print('-=' * 30)
+        print('Você chegou ao trabalho')
+        for i in range(3):
+            time.sleep(2)
+            print('Trabalhando...')
+        print("Fim do expediente! Escolha para onde ir")
+        self.dinheiro += 1
+
+        relogio.avancaTempo(480)
 
     def mercado(self):
         print('VOCÊ CHEGOU AO MERCADO!')
