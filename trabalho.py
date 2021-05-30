@@ -33,9 +33,3 @@ print(persona.dinheiro)
 persona.trabalho()
 print(relogio.horas)
 
-<<<<<<< HEAD
-# adicionando comentario teste
-=======
-
-#teste no arquivo
->>>>>>> d5eb8059d910142bd4136d95fd165783bb140061
