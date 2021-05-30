@@ -54,7 +54,7 @@ class Steve:
             time.sleep(2)
         print(f'Você acabou de comer! ')
         self.dados()
-        
+
     def beber(self):
         relogio.avancaTempo(5)
         if self.sede > 1 :
@@ -91,7 +91,7 @@ class Steve:
         self.fome += 1
         self.sede += 1
         self.saúde -= 1
-        self.dinheiro += 120
+        self.dinheiro += 1200
     
     def soneca(self):
         relogio.avancaTempo(30)
@@ -226,7 +226,7 @@ class Steve:
         print("Fim do expediente! Escolha para onde ir")
         self.dinheiro += 1
 
-        relogio.avancaTempo(480)
+        self.Trabalhar()
 
     def mercado(self):
         print('VOCÊ CHEGOU AO MERCADO!')
