@@ -187,15 +187,13 @@ class Steve:
 
         print('-=' * 30)
         print('Você chegou ao trabalho')
-        relogio.avancaTempo(540)
         for i in range(3):
             time.sleep(2)
             print('Trabalhando...')
         print("Fim do expediente! Escolha para onde ir\n")
-        print("São "+str(relogio)+" do dia "+str(dia)+". ")
         self.dinheiro += 1
-
         self.Trabalhar()
+        print("São "+str(relogio)+" do dia "+str(dia)+". ")
 
     def mercado(self):
         print('VOCÊ CHEGOU AO MERCADO!')
