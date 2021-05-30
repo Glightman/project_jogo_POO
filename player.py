@@ -123,6 +123,10 @@ class Steve:
                 self.restaurante()
             elif opcao == 3:
                 self.mercado()
+            elif opcao == 4:
+                self.escola()
+            elif opcao == 5:
+                self.bar()
         self.morrer()   
 
     def casa(self):
@@ -159,16 +163,41 @@ class Steve:
         self.morrer()
 
     def bar(self):
+        vinho = 0
+        
         while True:
             per = int(input('''SEJA BEM VINDO
             TEMOS APENAS VINHO EM NOSSO CARDÁPIO.
-            POSSO SERVI LO
+            POSSO SERVI LO?
             [ 1 ] SIM
             [ 2 ] MOSTRAR SEUS ATRIBUTOS
             [ 3 ] NÃO/SAIR
             '''))
             if per == 1:
-                self.beberVinho()
+                while True:
+                    vin = int(input('''
+                     [ 1 ] VINHO ARGENTINO ( DOSE )......R$  15,00
+                     [ 2 ] VINHO CHILENO  ( DOSE ).......R$  15,00
+                     [ 3 ] FINALIZAR PEDIDO
+                     [ 0 ] VOLTAR
+                '''))
+                    soma = vinho * 15.0
+                    if vin == 1 or vin == 2:
+                        relogio.avancaTempo(15)
+                        vinho += 1
+                    elif vin == 3:
+                        print(f'O VALOR TOTAL DO SEU PEDIDO É DE R$ {soma:.2f}')
+                        per =input('''
+                        POSSO FINALIZAR O PEDIDO?
+                        [ 1 ] SIM
+                        [ 2 ] NÃO
+                        ''')
+                        if per == 1 :
+                            if self.dinheiro < soma:
+                                print('INFELIZMENTE SEU CARTÃO FOI RECUSADO,\NVERIFIQUE SUA CONTA')
+                            else:
+                                self.beberVinho()
+                                print('SEU PEDIDO SERÁ SERVIDO NA MESA 12')
             elif per == 2:
                 self.dados()
             else:
