@@ -79,7 +79,7 @@ class Steve: #AQUI NÓS CRIAMOS UMA CLASSE PARA DEFINIR OS ATRIBUTOS DO NOSSO PE
         elif self.sede == 1 :
             self.sede -= 1
         else:
-            print('VOCÊ NÃO ESTÁ COM SEDE.')
+            print('\033[33mVOCÊ NÃO ESTÁ COM SEDE.\033[04;37m')
         
     def estudar(self):
         relogio.avancaTempo(240)
