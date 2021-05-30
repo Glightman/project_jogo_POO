@@ -3,7 +3,7 @@ class Relogio:
         self.horas = 6
         self.minutos = 0
     
-    def __str__(self): # Pesquisar significado dessa função especifica.
+    def __str__(self): 
         return f"{self.horas:02d}:{self.minutos:02d}"
     
     def avancaTempo(self, minutos):
@@ -17,6 +17,3 @@ class Relogio:
             self.horas -= 24
             self.dias += 1
        
-
-    def atrasado(self):
-        return (self.horas > 7 or (self.horas == 7 and self.minutos > 0))

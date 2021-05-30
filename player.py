@@ -18,6 +18,7 @@ class Steve:
     def dados(self): #ESSE MÉTODO MOSTRA OS ATRIBUTOS DO PERSONAGEM, ASSIM ELE PODE ACOMPANHAR SUA VIDA E TOMAR DECISÕES BASEADAS NESSAS INFORMAÇÕES.
         #NESTA LINHA ABIXO NÓS TEMOS UM PRINT DOS ATRIBUTOS, O CÓDIGO ANTES E DEPOIS DO TEMA SERVE PARA COLORIR O TEXTO QUE SERÁ MOSTRADO NO TERMINAL, ALÉM DE COLOCAR AS LETRAS EM NEGRITO TAMBÉM.
         #NÓS TAMBÉM USAMOS O f' PARA MOSTRAR OS ATRIBUTOS DIRETAMENTE DA VARIÁVEL.
+        print("São "+str(relogio)+" do dia "+str(dia)+". ")
         print(f'''           \033[1m\033[33mSEUS ATRIBUTOS SÃO:\033[04;37m
         \033[1m\033[04;37m[ENERGIA      -->  {self.energia}/20]
         [SEDE         -->  {self.sede}/10]
@@ -201,6 +202,7 @@ class Steve:
         ce = 0
         ag = 0
         while True:
+            relogio.avancaTempo(10)
             per = int(input('''
             
             TEMOS AS OPÇÕES ABAIXO:
@@ -236,6 +238,8 @@ class Steve:
                        ag = 0
                     else:
                         print('OBRIGADA E VOLTE SEMPRE!')
+                        self.comprar()
+                        print("São "+str(relogio)+" do dia "+str(dia)+". ")
             elif per  == 4 :
                 print( self.map())              
 
