@@ -46,8 +46,15 @@ class Steve:
         self.saúde += 0.5
         self.comida -= 2   
         if self.fome == 9:
-            print('SE VOCÊ NÃO SE ALIMENTAR IRÁ MORRER')  
-      
+            print('SE VOCÊ NÃO SE ALIMENTAR IRÁ MORRER')
+        
+        for i in range(3):
+            import time
+            print('Você está comendo')
+            time.sleep(2)
+        print(f'Você acabou de comer! ')
+        self.dados()
+        
     def beber(self):
         relogio.avancaTempo(5)
         if self.sede > 1 :
