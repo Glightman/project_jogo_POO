@@ -31,7 +31,17 @@ class Steve:
     def decor(self): #ESTA FUNÇÃO SERVE PARA DECORAR NOSSO TEXTO NO TERMINAL 
         print('-='*30) #ESSE PRINTE FARA UMA LINHA IGUAL A ESSA -->: -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     
+    def mostraAcao(self, acao):
+        print('-=' * 40)
+        import time
+        for i in range(3):
+            time.sleep(1.5)
+            print(f'Você está {acao}...')
+        print('-=' * 40)
+        
+        
     def ler(self): #A FUNÇÃO LER OU AÇÃO LER, ADCIONA MAIS ALGUNS PONTOS NA INTELIGÊNCIAE TAMBÉM FAZ O TEMPO AVANÇAR...
+        self.mostraAcao('lendo')
         relogio.avancaTempo(35)
         self.inteligência += 2
     
@@ -50,23 +60,13 @@ class Steve:
         self.comida -= 2   
         if self.fome == 9:
             print('SE VOCÊ NÃO SE ALIMENTAR IRÁ MORRER')
-        str = '''o Steve está comendo
-        '''
-        for ch in str: 
-            sleep(0.1) 
-            print(ch, end='', flush=True)
-        sleep(1)
-        print('-='*30)
-        str = '''Você acabou de comer! 
-        \033[33mCONFIRA SEUS ATRIBUTOS\033[04;37m
-        '''
-        for ch in str: 
-            sleep(0.1) 
-            print(ch, end='', flush=True)
-        #self.dados()
+        
+        self.mostraAcao('comendo')
+        
 
     def beber(self):
         relogio.avancaTempo(5)
+        self.mostraAcao('bebendo')
         if self.sede > 1 :
             self.sede -= 2
             self.saúde += 0.5
@@ -77,12 +77,14 @@ class Steve:
     
     def Comprar(self):
         relogio.avancaTempo(60)
+        self.mostraAcao('comprando')
         self.energia -= 0.5
         self.dinheiro -= 100
         self.comida += 2
     
     def Trabalhar(self):
         relogio.avancaTempo(540)
+        self.mostraAcao('trabalhando')
         self.energia -= 2
         self.fome += 1
         self.sede += 1
@@ -90,16 +92,19 @@ class Steve:
         self.dinheiro += 1200
     
     def soneca(self):
+        self.mostraAcao('tirando um cochilo')
         relogio.avancaTempo(30)
         self.energia += 5
         self.fome += 1
     
     def remedio1(self):
+        self.mostraAcao('tomando rémedio')
         relogio.avancaTempo(2)
         self.saúde += 1
         self.remedio -= 1
     
     def dormir(self):
+        self.mostraAcao('dormindo')
         relogio.avancaTempo(540)
         self.saúde += 2
         self.energia = 0
@@ -143,15 +148,8 @@ class Steve:
 
     def casa(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
-            print('-='*30)
-            if self.fome == 9:
-                str = '''\033[1m\033[32m!!! SE NÃO SE ALIMENTAR VOCÊ IRÁ MORRER !!!\033[37m
-                '''
-                for ch in str: 
-                    sleep(0.07) 
-                    print(ch, end='''''', flush=True)
-            print('-='*30)
-            casa = int(input('''ESSAS SÃO SUAS OPÇÕES NA CASA:
+            casa = int(input(f'''SÃO {Relogio()} HORA E ESSAS SÃO SUAS OPÇÕES NA CASA:
+
             [ 1 ] COMER
             [ 2 ] BEBER ÁGUA
             [ 3 ] TOMAR REMÉDIO
@@ -244,3 +242,104 @@ class Steve:
                     
             else:
                 print('OPÇÃO INVÁLIDA')
+
+        
+    
+    def escola(self):
+        parar = 0
+        while parar == 0:
+            opt = int(input('''SEJA BEM VINDO AO PY'SCHOOL
+            [ 1 ] Estudar
+            [ 2 ] Beber água
+            [ 3 ] Voltar
+            --> : '''))
+            if opt == 1:
+                self.estudar
+            elif opt == 2:
+                self.beber
+            elif opt == 3:
+                parar += 1
+            else:
+                print('Esta opção não é válida, tente outra: ')
+
+    def academia(self):
+            parar = 0
+            while parar == 0:
+                opt = int(input('''SEJA BEM VINDO A ACADEMIA PY'FIT
+                    [ 1 ] Malhar
+                    [ 2 ] Beber água
+                    [ 3 ] Mostrar atributos
+                    [ 4 ] Voltar
+                    --> : '''))
+                if opt == 1:
+                    self.malhar
+                elif opt == 2:
+                    self.beber
+                elif opt == 3:
+                    self.dados
+                elif opt == 4:
+                    parar += 1
+                else:
+                    print('Esta opção não é válida, tente outra: ')
+    def restaurante(self):
+        relogio.avancaTempo(60)
+        bife = 0
+        frango = 0
+        suco = 0
+        agua = 0
+        print('SEJA BEM VINDO!!')
+        while True:
+            opcao = int(input(''' 
+        EM NOSSO CARDAPIO TEMOS AS SEGUINTES OPÇÕES:
+        [ 1 ] PF BIFE COM BATATA FRITA....... R$ 18,00
+        [ 2 ] PF FRANGO A PASSARINHO......... R$ 15,00
+        [ 3 ] SUCO DE LARANJA  500ML......... R$  8,00
+        [ 4 ] ÁGUA MINERAL S/ GAS  510ML......R$  4,00
+        [ 5 ] CONFIRMAR PEDIDO
+        [ 0 ] SAIR DO RESTAURANTE
+        FAÇA SEU PEDIDO
+        '''))
+            soma = (bife * 18.0) + ( frango * 15.0) + (suco * 8.0) + (agua * 4.0)
+            if opcao == 1 :
+                bife += 1
+            elif opcao == 2 :
+                frango += 1
+            elif opcao == 3:
+                suco += 1
+            elif opcao == 4:
+                agua += 1
+            elif opcao == 5:
+                per = int(input(f'''VOCÊ CONFIRMA O PEDIDO?
+
+                [ {bife} ] PF BIFE COM BATATA FRITA
+                [ {frango} ] PF FRANGO A PASSARINHO
+                [ {suco} ] SUCO DE LARANJA  500ML
+                [ {agua} ] ÁGUA  500ML     
+
+           
+                [ 1 ] SIM
+                [ 0 ] NÃO
+                '''))
+                if per == 1:
+                    print(f'''
+                    SEU PEDIDO SERÁ PREPARADO, 
+                    APÓS A CONFIRMAÇÃO DE PAGAMENTO
+                    O VALOR TOTAL É DE R$ {soma:.2f}
+                    ''')
+                if per == 1 and self.dinheiro < soma :
+                    print(f'''
+                    VOCÊ POSSUI  R${self.dinheiro:.2f} EM 
+                    SUA CONTA, E NÃO É SUFICIENTE PARA FINALIZAR
+                    O PEDIDO.
+                    ''')           
+                    break         
+                else:
+                    bife = 0 
+                    frango = 0
+                    suco = 0 
+                    agua = 0 
+            elif per == 0 :
+                print('VOLTE SEMPRE')
+                break                   
+            else:
+                print('NÚMERO INVÁLIDO. TENTE NOVAMENTE')
