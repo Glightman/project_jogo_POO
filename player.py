@@ -1,19 +1,23 @@
 from relogio import Relogio
+from time import sleep
 relogio = Relogio()
+dia = 1
 class Steve:
     def __init__(self):
-        self.energia = 10
-        self.fome = 5
-        self.sede = 5
-        self.saúde = 10
-        self.dinheiro = 0
+        self.energia = 10 #NO ATRIBUTO ENERGIA ELE JA INICIA COM O MAX POIS ESSE É UM DOS ATRIBUTOS QUE VAI MANDAR NA VIDA DO PERSONAGEM
+        self.fome = 5 #A FOME JA SE INICIA NA METADE POIS É O MOMENTO EM QUE O PERSONAGEM ACORDA. ESSE ATRIBUTO TAMBÉM CONTROLA A VIDA.
+        self.sede = 5 #A SEDE JA SE INICIA NA METADE POIS É O MOMENTO EM QUE O PERSONAGEM ACORDA. ESSE ATRIBUTO TAMBÉM CONTROLA A VIDA.
+        self.saúde = 10 #O ATRIBUTO SAÚDE TAMBÉM CONTROLA A VIDA E VAI DIMINUINDO EM ALGUMAS SITUAÇÕES.
+        self.dinheiro = 0 #O ATRIBUTO DINHEIRO SERÁ USADO PARA FAZER COMPRAS DURANTE O JOGO.
         self.inteligência = 5
-        self.comida = 10
-        self.remedio = 10
+        self.comida = 10 #ESTE ATRIBUTO FUNCIONA COMO UM ESTOQUE DE SUPRIMENTOS RESPONSÁVEL PELA FOME E SEDE.
+        self.remedio = 10 #ESTE ATRIBUTO FUNCIONA COMO UM ESTOQUE DE SUPRIMENTOS RESPONSÁVEL PELA SAÚDE.
 
-     #AÇÕES ATRIBUÍDAS AO JOGADOR:
+     #AÇÕES ATRIBUÍDAS AO JOGADOR: ABAIXO NÓS TEMOS TODAS AS AÇÕES QUE O JOGADOR PODE FAZER EM CADA AMBIENTE.
 
-    def dados(self):
+    def dados(self): #ESSE MÉTODO MOSTRA OS ATRIBUTOS DO PERSONAGEM, ASSIM ELE PODE ACOMPANHAR SUA VIDA E TOMAR DECISÕES BASEADAS NESSAS INFORMAÇÕES.
+        #NESTA LINHA ABIXO NÓS TEMOS UM PRINT DOS ATRIBUTOS, O CÓDIGO ANTES E DEPOIS DO TEMA SERVE PARA COLORIR O TEXTO QUE SERÁ MOSTRADO NO TERMINAL, ALÉM DE COLOCAR AS LETRAS EM NEGRITO TAMBÉM.
+        #NÓS TAMBÉM USAMOS O f' PARA MOSTRAR OS ATRIBUTOS DIRETAMENTE DA VARIÁVEL.
         print(f'''           \033[1m\033[33mSEUS ATRIBUTOS SÃO:\033[04;37m
         \033[1m\033[04;37m[ENERGIA      -->  {self.energia}/20]
         [SEDE         -->  {self.sede}/10]
@@ -24,8 +28,8 @@ class Steve:
         [SUPRIMENTOS  -->  {self.comida}/ 10]
         [REMÉDIOS     -->  {self.remedio}/10]\033[04;37m''')
     
-    def decor(self):
-        print('-='*30)
+    def decor(self): #ESTA FUNÇÃO SERVE PARA DECORAR NOSSO TEXTO NO TERMINAL 
+        print('-='*30) #ESSE PRINTE FARA UMA LINHA IGUAL A ESSA -->: -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     
     def mostraAcao(self, acao):
         print('-=' * 40)
@@ -35,19 +39,20 @@ class Steve:
             print(f'Você está {acao}...')
         print('-=' * 40)
         
-    def ler(self):
+        
+    def ler(self): #A FUNÇÃO LER OU AÇÃO LER, ADCIONA MAIS ALGUNS PONTOS NA INTELIGÊNCIAE TAMBÉM FAZ O TEMPO AVANÇAR...
+        self.mostraAcao('lendo')
         relogio.avancaTempo(35)
         self.inteligência += 2
     
-    def morrer(self):
+    def morrer(self): #FUNÇÃO MORRER SERVE PARA QUANDO O JOGADOR ESTÁ SEM ENERGIA OU COM MUITA FOME OU SEDE.
         if self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
             print('FIM DO JOGO, VOCÊ MORREU :X ')
     
-    def beberVinho(self):
-        relogio.avancaTempo(40)
-        self.energia += 1
-        self.saúde += 1    
-    
+    #NAS FUNÇÕES ABAIXO NÓS TEMOS TODAS AS AÇOES DO PERSONAGEM... 
+    # E TODAS ELAS SEGUEM O MESMO MODELO:... 
+    # AO SER ACIONADAS ELAS ALTERAM OS ATRIBUTOS OU PRINTAM ALGO NA TELA.
+
     def comer(self):
         relogio.avancaTempo(35)
         self.fome -= 2
@@ -57,49 +62,29 @@ class Steve:
             print('SE VOCÊ NÃO SE ALIMENTAR IRÁ MORRER')
         
         self.mostraAcao('comendo')
-        """
-        print('-=' *  40)
-        for i in range(3):
-            import time
-            
-            print('Você está comendo...')
-            time.sleep(2)
-        print(f'Você acabou de comer!')
-        print('-=' *  40)
-"""
+        
 
     def beber(self):
         relogio.avancaTempo(5)
+        self.mostraAcao('bebendo')
         if self.sede > 1 :
             self.sede -= 2
             self.saúde += 0.5
         elif self.sede == 1 :
             self.sede -= 1
         else:
-            print('VOCÊ NÃO ESTÁ COM SEDE.')
-        
-    def estudar(self):
-        relogio.avancaTempo(240)
-        self.energia -= 4
-        self.fome += 2
-        self.sede += 2
-        self.inteligência += 3
-    
-    def malhar(self):
-        relogio.avancaTempo(60)
-        self.energia -= 3
-        self.fome += 2
-        self.sede += 2 
-        self.saúde += 2
+            print('\033[33mVOCÊ NÃO ESTÁ COM SEDE.\033[04;37m')
     
     def Comprar(self):
         relogio.avancaTempo(60)
+        self.mostraAcao('comprando')
         self.energia -= 0.5
         self.dinheiro -= 100
         self.comida += 2
     
     def Trabalhar(self):
         relogio.avancaTempo(540)
+        self.mostraAcao('trabalhando')
         self.energia -= 2
         self.fome += 1
         self.sede += 1
@@ -107,15 +92,19 @@ class Steve:
         self.dinheiro += 1200
     
     def soneca(self):
+        self.mostraAcao('tirando um cochilo')
         relogio.avancaTempo(30)
         self.energia += 5
+        self.fome += 1
     
     def remedio1(self):
+        self.mostraAcao('tomando rémedio')
         relogio.avancaTempo(2)
         self.saúde += 1
         self.remedio -= 1
     
     def dormir(self):
+        self.mostraAcao('dormindo')
         relogio.avancaTempo(540)
         self.saúde += 2
         self.energia = 0
@@ -138,22 +127,29 @@ class Steve:
             [ 0 ]  SAIR
             --> : '''))
             if opcao == 1 :
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.casa()
             elif opcao == 2:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.restaurante()
             elif opcao == 3:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.mercado()
             elif opcao == 4:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.escola()
             elif opcao == 5:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.bar()
             elif opcao == 6:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.trabalho()
         self.morrer()   
 
     def casa(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
             casa = int(input(f'''SÃO {Relogio()} HORA E ESSAS SÃO SUAS OPÇÕES NA CASA:
+
             [ 1 ] COMER
             [ 2 ] BEBER ÁGUA
             [ 3 ] TOMAR REMÉDIO
@@ -183,60 +179,18 @@ class Steve:
                 self.decor()
                 break
         self.morrer()
-
-    def bar(self):
-        vinho = 0
-        
-        while True:
-            per = int(input('''SEJA BEM VINDO
-            TEMOS APENAS VINHO EM NOSSO CARDÁPIO.
-            POSSO SERVI LO?
-            [ 1 ] SIM
-            [ 2 ] MOSTRAR SEUS ATRIBUTOS
-            [ 3 ] NÃO/SAIR
-            '''))
-            if per == 1:
-                while True:
-                    vin = int(input('''
-                     [ 1 ] VINHO ARGENTINO ( DOSE )......R$  15,00
-                     [ 2 ] VINHO CHILENO  ( DOSE ).......R$  15,00
-                     [ 3 ] FINALIZAR PEDIDO
-                     [ 0 ] VOLTAR
-                '''))
-                    soma = vinho * 15.0
-                    if vin == 1 or vin == 2:
-                        relogio.avancaTempo(30)
-                        vinho += 1
-                    elif vin == 3:
-                        print(f'O VALOR TOTAL DO SEU PEDIDO É DE R$ {soma:.2f}')
-                        per =input('''
-                        POSSO FINALIZAR O PEDIDO?
-                        [ 1 ] SIM
-                        [ 2 ] NÃO
-                        ''')
-                        if per == 1 :
-                            if self.dinheiro < soma:
-                                relogio.avancaTempo(10)
-                                print('''
-                                INFELIZMENTE SEU CARTÃO FOI RECUSADO,
-                                VERIFIQUE SUA CONTA''')
-                            else:
-                                self.beberVinho()
-                                print('SEU PEDIDO SERÁ SERVIDO NA MESA 12')
-            elif per == 2:
-                self.dados()
-            else:
-                break
-  
+    
     def trabalho(self):
         import time
 
         print('-=' * 30)
         print('Você chegou ao trabalho')
+        relogio.avancaTempo(540)
         for i in range(3):
             time.sleep(2)
             print('Trabalhando...')
-        print("Fim do expediente! Escolha para onde ir")
+        print("Fim do expediente! Escolha para onde ir\n")
+        print("São "+str(relogio)+" do dia "+str(dia)+". ")
         self.dinheiro += 1
 
         self.Trabalhar()
@@ -261,7 +215,7 @@ class Steve:
             elif per == 2:
                 ag +=1
             elif per == 3:
-                print(ce, ag)
+                #print(ce, ag)
                 per1 = int(input(f'''
                 O VALOR TOTAL DE SUA COMPRA É DE R$ {somar:.2f}
                 DESEJA CONTINUAR?
