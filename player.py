@@ -1,5 +1,6 @@
 from relogio import Relogio
 relogio = Relogio()
+dia = Relogio()
 class Steve:
     def __init__(self):
         self.energia = 10
@@ -125,16 +126,22 @@ class Steve:
             [ 0 ]  SAIR
             --> : '''))
             if opcao == 1 :
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.casa()
             elif opcao == 2:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.restaurante()
             elif opcao == 3:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.mercado()
             elif opcao == 4:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.escola()
             elif opcao == 5:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.bar()
             elif opcao == 6:
+                print("São "+str(relogio)+" do dia "+str(dia)+". ")
                 self.trabalho()
         self.morrer()   
 
@@ -177,7 +184,7 @@ class Steve:
         while True:
             per = int(input('''SEJA BEM VINDO
             TEMOS APENAS VINHO EM NOSSO CARDÁPIO.
-            POSSO SERVI LO?
+            QUER VER AS OPÇÕES?
             [ 1 ] SIM
             [ 2 ] MOSTRAR SEUS ATRIBUTOS
             [ 3 ] NÃO/SAIR
@@ -192,24 +199,25 @@ class Steve:
                 '''))
                     soma = vinho * 15.0
                     if vin == 1 or vin == 2:
-                        relogio.avancaTempo(30)
                         vinho += 1
                     elif vin == 3:
                         print(f'O VALOR TOTAL DO SEU PEDIDO É DE R$ {soma:.2f}')
-                        per =input('''
+                        per1 =int(input('''
                         POSSO FINALIZAR O PEDIDO?
                         [ 1 ] SIM
                         [ 2 ] NÃO
-                        ''')
-                        if per == 1 :
-                            if self.dinheiro < soma:
-                                relogio.avancaTempo(10)
-                                print('''
-                                INFELIZMENTE SEU CARTÃO FOI RECUSADO,
-                                VERIFIQUE SUA CONTA''')
-                            else:
-                                self.beberVinho()
-                                print('SEU PEDIDO SERÁ SERVIDO NA MESA 12')
+                        '''))
+                        if per1 == 1 and self.dinheiro < soma :
+                            print(f'''
+                                    INFELIZMENTE O VALOR DE 
+                                    R$ {soma:.2f} FOI RECUSADO,
+                                    PELA OPERADORA DO CARTÃO.
+                                    VERIFIQUE SUA CONTA''')
+                            break      
+                        else:
+                            relogio.avancaTempo(30)
+                            self.beberVinho()
+                            print('SEU PEDIDO SERÁ SERVIDO NA MESA 12')
             elif per == 2:
                 self.dados()
             else:
@@ -248,7 +256,7 @@ class Steve:
             elif per == 2:
                 ag +=1
             elif per == 3:
-                print(ce, ag)
+                #print(ce, ag)
                 per1 = int(input(f'''
                 O VALOR TOTAL DE SUA COMPRA É DE R$ {somar:.2f}
                 DESEJA CONTINUAR?
