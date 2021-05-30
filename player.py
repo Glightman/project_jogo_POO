@@ -183,7 +183,7 @@ class Steve:
                 '''))
                     soma = vinho * 15.0
                     if vin == 1 or vin == 2:
-                        relogio.avancaTempo(15)
+                        relogio.avancaTempo(30)
                         vinho += 1
                     elif vin == 3:
                         print(f'O VALOR TOTAL DO SEU PEDIDO É DE R$ {soma:.2f}')
@@ -194,7 +194,10 @@ class Steve:
                         ''')
                         if per == 1 :
                             if self.dinheiro < soma:
-                                print('INFELIZMENTE SEU CARTÃO FOI RECUSADO,\NVERIFIQUE SUA CONTA')
+                                relogio.avancaTempo(10)
+                                print('''
+                                INFELIZMENTE SEU CARTÃO FOI RECUSADO,
+                                VERIFIQUE SUA CONTA''')
                             else:
                                 self.beberVinho()
                                 print('SEU PEDIDO SERÁ SERVIDO NA MESA 12')
