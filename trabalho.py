@@ -1,4 +1,4 @@
-from relogio import Relogio
+""" from relogio import Relogio
 relogio = Relogio()
 
 import time
@@ -31,11 +31,12 @@ class Steve:
 persona = Steve()
 print(persona.dinheiro)
 persona.trabalho()
-print(relogio.horas)
+print(relogio.horas) """
 
-<<<<<<< HEAD
-# adicionando comentario teste
-=======
 
 #teste no arquivo
->>>>>>> d5eb8059d910142bd4136d95fd165783bb140061
+import time
+string = "testando essa porra aa a aa aa"
+for ch in string: 
+    time.sleep(0.1) 
+    print(ch, end='', flush=True)
