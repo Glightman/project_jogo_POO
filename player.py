@@ -1,20 +1,24 @@
 from relogio import Relogio
+from time import sleep
 relogio = Relogio()
 dia = Relogio()
 class Steve:
+class Steve: #AQUI NÓS CRIAMOS UMA CLASSE PARA DEFINIR OS ATRIBUTOS DO NOSSO PERSONAGEM
     def __init__(self):
-        self.energia = 10
-        self.fome = 5
-        self.sede = 5
-        self.saúde = 10
-        self.dinheiro = 0
+        self.energia = 10 #NO ATRIBUTO ENERGIA ELE JA INICIA COM O MAX POIS ESSE É UM DOS ATRIBUTOS QUE VAI MANDAR NA VIDA DO PERSONAGEM
+        self.fome = 5 #A FOME JA SE INICIA NA METADE POIS É O MOMENTO EM QUE O PERSONAGEM ACORDA. ESSE ATRIBUTO TAMBÉM CONTROLA A VIDA.
+        self.sede = 5 #A SEDE JA SE INICIA NA METADE POIS É O MOMENTO EM QUE O PERSONAGEM ACORDA. ESSE ATRIBUTO TAMBÉM CONTROLA A VIDA.
+        self.saúde = 10 #O ATRIBUTO SAÚDE TAMBÉM CONTROLA A VIDA E VAI DIMINUINDO EM ALGUMAS SITUAÇÕES.
+        self.dinheiro = 0 #O ATRIBUTO DINHEIRO SERÁ USADO PARA FAZER COMPRAS DURANTE O JOGO.
         self.inteligência = 5
-        self.comida = 10
-        self.remedio = 10
+        self.comida = 10 #ESTE ATRIBUTO FUNCIONA COMO UM ESTOQUE DE SUPRIMENTOS RESPONSÁVEL PELA FOME E SEDE.
+        self.remedio = 10 #ESTE ATRIBUTO FUNCIONA COMO UM ESTOQUE DE SUPRIMENTOS RESPONSÁVEL PELA SAÚDE.
 
-     #AÇÕES ATRIBUÍDAS AO JOGADOR:
+     #AÇÕES ATRIBUÍDAS AO JOGADOR: ABAIXO NÓS TEMOS TODAS AS AÇÕES QUE O JOGADOR PODE FAZER EM CADA AMBIENTE.
 
-    def dados(self):
+    def dados(self): #ESSE MÉTODO MOSTRA OS ATRIBUTOS DO PERSONAGEM, ASSIM ELE PODE ACOMPANHAR SUA VIDA E TOMAR DECISÕES BASEADAS NESSAS INFORMAÇÕES.
+        #NESTA LINHA ABIXO NÓS TEMOS UM PRINT DOS ATRIBUTOS, O CÓDIGO ANTES E DEPOIS DO TEMA SERVE PARA COLORIR O TEXTO QUE SERÁ MOSTRADO NO TERMINAL, ALÉM DE COLOCAR AS LETRAS EM NEGRITO TAMBÉM.
+        #NÓS TAMBÉM USAMOS O f' PARA MOSTRAR OS ATRIBUTOS DIRETAMENTE DA VARIÁVEL.
         print(f'''           \033[1m\033[33mSEUS ATRIBUTOS SÃO:\033[04;37m
         \033[1m\033[04;37m[ENERGIA      -->  {self.energia}/20]
         [SEDE         -->  {self.sede}/10]
@@ -25,20 +29,24 @@ class Steve:
         [SUPRIMENTOS  -->  {self.comida}/ 10]
         [REMÉDIOS     -->  {self.remedio}/10]\033[04;37m''')
     
-    def decor(self):
-        print('-='*30)
+    def decor(self): #ESTA FUNÇÃO SERVE PARA DECORAR NOSSO TEXTO NO TERMINAL 
+        print('-='*30) #ESSE PRINTE FARA UMA LINHA IGUAL A ESSA -->: -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     
-    def ler(self):
+    def ler(self): #A FUNÇÃO LER OU AÇÃO LER, ADCIONA MAIS ALGUNS PONTOS NA INTELIGÊNCIAE TAMBÉM FAZ O TEMPO AVANÇAR...
         relogio.avancaTempo(35)
         self.inteligência += 2
     
-    def morrer(self):
+    def morrer(self): #FUNÇÃO MORRER SERVE PARA QUANDO O JOGADOR ESTÁ SEM ENERGIA OU COM MUITA FOME OU SEDE.
         if self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
             print('FIM DO JOGO, VOCÊ MORREU :X ')
     
+    #NAS FUNÇÕES ABAIXO NÓS TEMOS TODAS AS AÇOES DO PERSONAGEM... 
+    # E TODAS ELAS SEGUEM O MESMO MODELO:... 
+    # AO SER ACIONADAS ELAS ALTERAM OS ATRIBUTOS OU PRINTAM ALGO NA TELA.
+
     def beberVinho(self):
         relogio.avancaTempo(40)
-        self.energia += 1
+        self.sede += 1
         self.saúde += 1    
     
     def comer(self):
@@ -48,13 +56,20 @@ class Steve:
         self.comida -= 2   
         if self.fome == 9:
             print('SE VOCÊ NÃO SE ALIMENTAR IRÁ MORRER')
-        
-        for i in range(3):
-            import time
-            print('Você está comendo')
-            time.sleep(2)
-        print(f'Você acabou de comer! ')
-        self.dados()
+        str = '''o Steve está comendo
+        '''
+        for ch in str: 
+            sleep(0.1) 
+            print(ch, end='', flush=True)
+        sleep(1)
+        print('-='*30)
+        str = '''Você acabou de comer! 
+        \033[33mCONFIRA SEUS ATRIBUTOS\033[04;37m
+        '''
+        for ch in str: 
+            sleep(0.1) 
+            print(ch, end='', flush=True)
+        #self.dados()
 
     def beber(self):
         relogio.avancaTempo(5)
@@ -97,6 +112,7 @@ class Steve:
     def soneca(self):
         relogio.avancaTempo(30)
         self.energia += 5
+        self.fome += 1
     
     def remedio1(self):
         relogio.avancaTempo(2)
@@ -147,6 +163,14 @@ class Steve:
 
     def casa(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
+            print('-='*30)
+            if self.fome == 9:
+                str = '''\033[1m\033[32m!!! SE NÃO SE ALIMENTAR VOCÊ IRÁ MORRER !!!\033[37m
+                '''
+                for ch in str: 
+                    sleep(0.07) 
+                    print(ch, end='''''', flush=True)
+            print('-='*30)
             casa = int(input('''ESSAS SÃO SUAS OPÇÕES NA CASA:
             [ 1 ] COMER
             [ 2 ] BEBER ÁGUA
