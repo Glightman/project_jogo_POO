@@ -32,3 +32,6 @@ persona = Steve()
 print(persona.dinheiro)
 persona.trabalho()
 print(relogio.horas)
+
+
+#teste no arquivo
