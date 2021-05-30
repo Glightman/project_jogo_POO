@@ -1,6 +1,6 @@
 from relogio import Relogio
 relogio = Relogio()
-dia = Relogio()
+dia = 1
 class Steve:
     def __init__(self):
         self.energia = 10
