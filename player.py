@@ -1,8 +1,8 @@
 from relogio import Relogio
 from time import sleep
 relogio = Relogio()
-dia = Relogio()
-class Steve: #AQUI NÓS CRIAMOS UMA CLASSE PARA DEFINIR OS ATRIBUTOS DO NOSSO PERSONAGEM
+dia = 1
+class Steve:
     def __init__(self):
         self.energia = 10 #NO ATRIBUTO ENERGIA ELE JA INICIA COM O MAX POIS ESSE É UM DOS ATRIBUTOS QUE VAI MANDAR NA VIDA DO PERSONAGEM
         self.fome = 5 #A FOME JA SE INICIA NA METADE POIS É O MOMENTO EM QUE O PERSONAGEM ACORDA. ESSE ATRIBUTO TAMBÉM CONTROLA A VIDA.
@@ -187,10 +187,12 @@ class Steve: #AQUI NÓS CRIAMOS UMA CLASSE PARA DEFINIR OS ATRIBUTOS DO NOSSO PE
 
         print('-=' * 30)
         print('Você chegou ao trabalho')
+        relogio.avancaTempo(540)
         for i in range(3):
             time.sleep(2)
             print('Trabalhando...')
-        print("Fim do expediente! Escolha para onde ir")
+        print("Fim do expediente! Escolha para onde ir\n")
+        print("São "+str(relogio)+" do dia "+str(dia)+". ")
         self.dinheiro += 1
 
         self.Trabalhar()
