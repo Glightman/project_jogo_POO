@@ -2,7 +2,7 @@ from player import Steve
 from relogio import Relogio
 personagem = Steve()
 relogio = Relogio()
-dia = 1
+dia = ''
 
 
 def decor():
@@ -10,7 +10,7 @@ def decor():
 decor()
 print('-=-=-=-=- \033[1m\033[33mSEJA BEM VINDO AO "SIMULADOR DE VIDA"\033[04;37m -=-=-=-=-')
 decor()
-print("São "+str(relogio)+" do dia "+str(dia)+". ")
+print("São "+str(relogio)+". ")
 print('AJUDE O STEVE A TOMAR DECISÕES EM SEU DIA DIA.')
 decor()
 print('ESSAS SÃO AS SUAS ATRIBUÍÇÕES INICIAIS:')

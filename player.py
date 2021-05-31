@@ -1,8 +1,9 @@
 from relogio import Relogio
 from time import sleep
 relogio = Relogio()
-dia = 1
+
 class Steve:
+    print()
     def __init__(self):
         self.energia = 10 #NO ATRIBUTO ENERGIA ELE JA INICIA COM O MAX POIS ESSE É UM DOS ATRIBUTOS QUE VAI MANDAR NA VIDA DO PERSONAGEM
         self.fome = 5 #A FOME JA SE INICIA NA METADE POIS É O MOMENTO EM QUE O PERSONAGEM ACORDA. ESSE ATRIBUTO TAMBÉM CONTROLA A VIDA.
@@ -18,7 +19,7 @@ class Steve:
     def dados(self): #ESSE MÉTODO MOSTRA OS ATRIBUTOS DO PERSONAGEM, ASSIM ELE PODE ACOMPANHAR SUA VIDA E TOMAR DECISÕES BASEADAS NESSAS INFORMAÇÕES.
         #NESTA LINHA ABIXO NÓS TEMOS UM PRINT DOS ATRIBUTOS, O CÓDIGO ANTES E DEPOIS DO TEMA SERVE PARA COLORIR O TEXTO QUE SERÁ MOSTRADO NO TERMINAL, ALÉM DE COLOCAR AS LETRAS EM NEGRITO TAMBÉM.
         #NÓS TAMBÉM USAMOS O f' PARA MOSTRAR OS ATRIBUTOS DIRETAMENTE DA VARIÁVEL.
-        print("São "+str(relogio)+" do dia "+str(dia)+". ")
+        print(f"São "+str(relogio)+". ")
         print(f'''           \033[1m\033[33mSEUS ATRIBUTOS SÃO:\033[04;37m
         \033[1m\033[04;37m[ENERGIA      -->  {self.energia}/20]
         [SEDE         -->  {self.sede}/10]
@@ -128,28 +129,28 @@ class Steve:
             [ 0 ]  SAIR
             --> : '''))
             if opcao == 1 :
-                print("São "+str(relogio)+" do dia "+str(dia)+". ")
+                print("São "+str(relogio)+". ")
                 self.casa()
             elif opcao == 2:
-                print("São "+str(relogio)+" do dia "+str(dia)+". ")
+                print("São "+str(relogio)+". ")
                 self.restaurante()
             elif opcao == 3:
-                print("São "+str(relogio)+" do dia "+str(dia)+". ")
+                print("São "+str(relogio)+". ")
                 self.mercado()
             elif opcao == 4:
-                print("São "+str(relogio)+" do dia "+str(dia)+". ")
+                print("São "+str(relogio)+". ")
                 self.escola()
             elif opcao == 5:
-                print("São "+str(relogio)+" do dia "+str(dia)+". ")
+                print("São "+str(relogio)+". ")
                 self.bar()
             elif opcao == 6:
-                print("São "+str(relogio)+" do dia "+str(dia)+". ")
+                print("São "+str(relogio)+". ")
                 self.trabalho()
         self.morrer()   
 
     def casa(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
-            casa = int(input(f'''SÃO {(relogio)} HORA E ESSAS SÃO SUAS OPÇÕES NA CASA:
+            casa = int(input(f'''SÃO {(relogio)}  E ESSAS SÃO SUAS OPÇÕES NA CASA:
 
             [ 1 ] COMER
             [ 2 ] BEBER ÁGUA
@@ -192,7 +193,7 @@ class Steve:
         print("Fim do expediente! Escolha para onde ir\n")
         self.dinheiro += 1
         self.Trabalhar()
-        print("São "+str(relogio)+" do dia "+str(dia)+". ")
+        print("São "+str(relogio)+". ")
 
     def mercado(self):
         print('VOCÊ CHEGOU AO MERCADO!')
@@ -227,13 +228,13 @@ class Steve:
                     VOCÊ NÃO TEM DINHEIRO SUFICIENTE PARA FINALIZAR SUA COMPRA
                     SEU SALDO ATUAL É DE R$ {self.dinheiro:.2f}
                     ''')
-                    print("São "+str(relogio)+" do dia "+str(dia)+". ")
+                    print("São "+str(relogio)+". ")
                     print( self.map())
                
                 elif per1 == 1:
                     self.Comprar()
                     print('OBRIGADA E VOLTE SEMPRE!')
-                    print("São "+str(relogio)+" do dia "+str(dia)+". ")
+                    print("São "+str(relogio)+". ")
                     print( self.map())
 
             elif per  == 4 :
