@@ -5,9 +5,6 @@ personagem = Steve()
 relogio = Relogio()
 dia = ''
 
-
-
-
 def decor():
     print('-='*30)
 decor()
@@ -30,9 +27,3 @@ while True:
         break
     else:
         print('OPÇÃO INVÁLIDA. TENTE NOVAMENTE: ')
-   
-        
-      
-               
-            
-    
