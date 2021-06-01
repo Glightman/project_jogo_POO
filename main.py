@@ -15,12 +15,18 @@ print('AJUDE O STEVE A TOMAR DECISÕES EM SEU DIA DIA.')
 decor()
 print('ESSAS SÃO AS SUAS ATRIBUÍÇÕES INICIAIS:')
 print(personagem.dados())
-mapa = int(input('''ACESSAR MAPA PARA INICIAR O JOGO?
-[ 1 ] SIM
-[ 0 ] NÃO (sair)
---> : '''))
-if mapa == 1:
-    personagem.map()
+while True:
+    mapa = int(input('''ACESSAR MAPA PARA INICIAR O JOGO?
+    [ 1 ] SIM
+    [ 0 ] NÃO (sair)
+    --> : '''))
+    if mapa == 1:
+        personagem.map()
+    elif mapa == 0:
+        print('VOCÊ FINALIZOU O JOGO!')
+        break
+    else:
+        print('OPÇÃO INVÁLIDA. TENTE NOVAMENTE: ')
    
         
       

@@ -12,7 +12,7 @@ class Steve:
         self.inteligência = 5
         self.comida = 10 #ESTE ATRIBUTO FUNCIONA COMO UM ESTOQUE DE SUPRIMENTOS RESPONSÁVEL PELA FOME E SEDE.
         self.remedio = 10 #ESTE ATRIBUTO FUNCIONA COMO UM ESTOQUE DE SUPRIMENTOS RESPONSÁVEL PELA SAÚDE.
-        self.comprar = 10
+        #self.comprar = 10
      #AÇÕES ATRIBUÍDAS AO JOGADOR: ABAIXO NÓS TEMOS TODAS AS AÇÕES QUE O JOGADOR PODE FAZER EM CADA AMBIENTE.
 
     def dados(self): #ESSE MÉTODO MOSTRA OS ATRIBUTOS DO PERSONAGEM, ASSIM ELE PODE ACOMPANHAR SUA VIDA E TOMAR DECISÕES BASEADAS NESSAS INFORMAÇÕES.
@@ -57,7 +57,7 @@ class Steve:
             print('Sua saúde atingiu nivel 0')
         print('FIM DO JOGO, VOCÊ MORREU :X ')
     
-    #NAS FUNÇÕES ABAIXO NÓS TEMOS TODAS AS AÇOES DO PERSONAGEM... 
+    # NAS FUNÇÕES ABAIXO NÓS TEMOS TODAS AS AÇOES DO PERSONAGEM... 
     # E TODAS ELAS SEGUEM O MESMO MODELO:... 
     # AO SER ACIONADAS ELAS ALTERAM OS ATRIBUTOS OU PRINTAM ALGO NA TELA.
 
@@ -101,11 +101,11 @@ class Steve:
         if self.sede >= 7:
             print('SE VOCÊ NÃO BEBER ÁGUA IRÁ MORRER')
     
-    def comprar(self):
+    def comprar(self, x):
         relogio.avancaTempo(60)
         self.mostraAcao('comprando')
         self.energia -= 0.5
-        self.dinheiro -= 100
+        self.dinheiro -= x
         self.comida += 2
     
     def trabalhar(self):
@@ -141,7 +141,7 @@ class Steve:
         if self.fome == 5:
             self.fome += 5
     
-#AMBIENTES EM QUE O JOGADOR PODE ENTRAR E ESCOLHER AS SUAS AÇÕES:
+# AMBIENTES EM QUE O JOGADOR PODE ENTRAR E ESCOLHER AS SUAS AÇÕES:
 
     def map(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:  
@@ -203,18 +203,17 @@ class Steve:
                 break
             else:
                 print('OPÇÃO INVÁLIDA. TENTE NOVAMENTE... ')
-        if self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
-            self.morrer()
+        #if self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
+            #self.morrer()
     
     def trabalho(self):
-        if self.fome <= 8 and self.sede <= 8 and self.saúde >= 2 and self.energia >= 3:
+        if self.saúde >= 2 and self.energia >= 3:
             print('-=' * 30)
             print('Você chegou ao trabalho')
             print('-=' * 30)
             self.trabalhar()
             print('-=' * 30)
             print("Fim do expediente! Escolha para onde ir\n")
-            self.dinheiro += 1
             print("São "+str(relogio)+". ")
         else:
             print('''VOCÊ NÃO PODE TRABALHAR: SUAS ATRIBUÍÇÕES VITAIS ESTÃO MUITO BAIXA
@@ -235,7 +234,7 @@ class Steve:
             [ 3 ]    FINALIZAR A COMPRA
             [ 4 ]    NÃO/VOLTAR
             --> : '''))
-            somar = ce * 80.0 + ag * 15.0
+            somar = (ce * 80.0) + (ag * 15.0)
             if per == 1:
                 ce += 1
             elif per == 2:
@@ -257,13 +256,13 @@ class Steve:
                     print( self.map())
                
                 elif per1 == 1 and self.dinheiro >= somar:
-                    self.comprar()
+                    self.comprar(somar)
                     print('OBRIGADA E VOLTE SEMPRE!')
                     print("São "+str(relogio)+". ")
-                    print( self.map())
+                    break
 
             elif per  == 4 :
-                print( self.map())              
+                break             
 
                     
             else:
