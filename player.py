@@ -3,7 +3,6 @@ from time import sleep
 relogio = Relogio()
 
 class Steve:
-    print()
     def __init__(self):
         self.energia = 10 #NO ATRIBUTO ENERGIA ELE JA INICIA COM O MAX POIS ESSE É UM DOS ATRIBUTOS QUE VAI MANDAR NA VIDA DO PERSONAGEM
         self.fome = 5 #A FOME JA SE INICIA NA METADE POIS É O MOMENTO EM QUE O PERSONAGEM ACORDA. ESSE ATRIBUTO TAMBÉM CONTROLA A VIDA.
@@ -25,7 +24,7 @@ class Steve:
         [SEDE         -->  {self.sede}/10]
         [FOME         -->  {self.fome}/10]
         [SAÚDE        -->  {self.saúde}/10]
-        [DINHEIRO     -->  {self.dinheiro}/10]
+        [DINHEIRO     -->  {self.dinheiro}]
         [INTELÍGÊNCIA -->  {self.inteligência}/10]
         [SUPRIMENTOS  -->  {self.comida}/ 10]
         [REMÉDIOS     -->  {self.remedio}/10]\033[04;37m''')
@@ -35,21 +34,28 @@ class Steve:
     
     def mostraAcao(self, acao):
         print('-=' * 40)
-        import time
-        for i in range(3):
-            time.sleep(1.5)
-            print(f'Você está {acao}...')
+        string = f'Você está {acao}...'
+        for ch in string:
+            sleep(0.3)
+            print(ch, end='', flush=True)
+        print(' ')
         print('-=' * 40)
-        
-        
-    def ler(self): #A FUNÇÃO LER OU AÇÃO LER, ADCIONA MAIS ALGUNS PONTOS NA INTELIGÊNCIAE TAMBÉM FAZ O TEMPO AVANÇAR...
+                
+    def ler(self): #A FUNÇÃO LER OU AÇÃO LER, ADCIONA MAIS ALGUNS PONTOS NA INTELIGÊNCIA E TAMBÉM FAZ O TEMPO AVANÇAR...
         self.mostraAcao('lendo')
         relogio.avancaTempo(35)
         self.inteligência += 2
     
     def morrer(self): #FUNÇÃO MORRER SERVE PARA QUANDO O JOGADOR ESTÁ SEM ENERGIA OU COM MUITA FOME OU SEDE.
-        if self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
-            print('FIM DO JOGO, VOCÊ MORREU :X ')
+        if self.fome == 10:
+            print('Sua fome atingiu nivel 10')
+        if self.sede == 10:
+            print('Sua sede atingiu nivel 10')
+        if self.energia == 0:
+            print('Sua energia atingiu nivel 0')
+        if self.saúde == 0:
+            print('Sua saúde atingiu nivel 0')
+        print('FIM DO JOGO, VOCÊ MORREU :X ')
     
     #NAS FUNÇÕES ABAIXO NÓS TEMOS TODAS AS AÇOES DO PERSONAGEM... 
     # E TODAS ELAS SEGUEM O MESMO MODELO:... 
@@ -57,34 +63,52 @@ class Steve:
 
     def comer(self):
         relogio.avancaTempo(35)
-        self.fome -= 2
-        self.saúde += 0.5
-        self.comida -= 2   
-        if self.fome == 9:
+        if self.fome >= 2:
+            self.mostraAcao('comendo')
+            self.fome -= 2
+            if self.saúde < 10:
+                self.saúde += 1
+            self.comida -= 2 
+        elif self.fome == 0:
+            print('\033[33mVOCÊ NÃO ESTÁ COM FOME.\033[04;37m')
+        else:
+            if self.saúde == 1:
+                self.mostraAcao('comendo')
+                self.fome -= 1
+            if self.saúde < 10:
+                self.saúde += 1
+            self.comida -= 2 
+        if self.fome >= 7:
             print('SE VOCÊ NÃO SE ALIMENTAR IRÁ MORRER')
         
-        self.mostraAcao('comendo')
-        
-
     def beber(self):
         relogio.avancaTempo(5)
-        self.mostraAcao('bebendo')
-        if self.sede > 1 :
+        if self.sede >= 2:
+            self.mostraAcao('bebendo água')
             self.sede -= 2
-            self.saúde += 0.5
-        elif self.sede == 1 :
-            self.sede -= 1
-        else:
+            if self.saúde < 10:
+                self.saúde += 1
+            self.comida -= 2 
+        elif self.sede == 0:
             print('\033[33mVOCÊ NÃO ESTÁ COM SEDE.\033[04;37m')
+        else:
+            if self.saúde == 1:
+                self.mostraAcao('bebendo água')
+                self.sede -= 1
+            if self.saúde < 10:
+                self.saúde += 1
+            self.comida -= 2 
+        if self.sede >= 7:
+            print('SE VOCÊ NÃO BEBER ÁGUA IRÁ MORRER')
     
-    def Comprar(self):
+    def comprar(self):
         relogio.avancaTempo(60)
         self.mostraAcao('comprando')
         self.energia -= 0.5
         self.dinheiro -= 100
         self.comida += 2
     
-    def Trabalhar(self):
+    def trabalhar(self):
         relogio.avancaTempo(540)
         self.mostraAcao('trabalhando')
         self.energia -= 2
@@ -100,10 +124,13 @@ class Steve:
         self.fome += 1
     
     def remedio1(self):
-        self.mostraAcao('tomando rémedio')
         relogio.avancaTempo(2)
-        self.saúde += 1
-        self.remedio -= 1
+        if self.saúde < 10:
+            self.mostraAcao('tomando rémedio')
+            self.saúde += 1
+            self.remedio -= 1
+        else:
+            print('SUA SAÚDE JÁ ESTÁ EM 100%.')
     
     def dormir(self):
         self.mostraAcao('dormindo')
@@ -120,12 +147,9 @@ class Steve:
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:  
             opcao = int(input('''ESTES SÃO SEUS AMBIENTES:
             [ 1 ]  CASA
-            [ 2 ]  RESTAURANTE
+            [ 2 ]  TRABALHO
             [ 3 ]  MERCADO
-            [ 4 ]  ESCOLA
-            [ 5 ]  BAR
-            [ 6 ]  TRABALHO
-            [ 7 ]  ACADEMIA
+            [ 4 ]  MOSTRAR SEUS ATRIBUTOS
             [ 0 ]  SAIR
             --> : '''))
             if opcao == 1 :
@@ -133,20 +157,20 @@ class Steve:
                 self.casa()
             elif opcao == 2:
                 print("São "+str(relogio)+". ")
-                self.restaurante()
+                self.trabalho()
             elif opcao == 3:
                 print("São "+str(relogio)+". ")
                 self.mercado()
             elif opcao == 4:
                 print("São "+str(relogio)+". ")
-                self.escola()
-            elif opcao == 5:
+                self.dados()
+            elif opcao == 0:
                 print("São "+str(relogio)+". ")
-                self.bar()
-            elif opcao == 6:
-                print("São "+str(relogio)+". ")
-                self.trabalho()
-        self.morrer()   
+                break
+            else:
+                print('OPÇÃO INVÁLIDA. TENTE NOVAMENTE... ') 
+        if self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
+            self.morrer()   
 
     def casa(self):
         while not self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
@@ -175,25 +199,26 @@ class Steve:
                 self.dormir()
             elif casa == 7:
                 self.dados()
-            else:
-                self.decor()
-                print('VOCÊ SAIU DO JOGO')
-                self.decor()
+            elif casa == 0:
                 break
-        self.morrer()
+            else:
+                print('OPÇÃO INVÁLIDA. TENTE NOVAMENTE... ')
+        if self.fome == 10 or self.sede == 10 or self.energia == 0 or self.saúde == 0:
+            self.morrer()
     
     def trabalho(self):
-        import time
-
-        print('-=' * 30)
-        print('Você chegou ao trabalho')
-        for i in range(3):
-            time.sleep(2)
-            print('Trabalhando...')
-        print("Fim do expediente! Escolha para onde ir\n")
-        self.dinheiro += 1
-        self.Trabalhar()
-        print("São "+str(relogio)+". ")
+        if self.fome <= 8 and self.sede <= 8 and self.saúde >= 2 and self.energia >= 3:
+            print('-=' * 30)
+            print('Você chegou ao trabalho')
+            print('-=' * 30)
+            self.trabalhar()
+            print('-=' * 30)
+            print("Fim do expediente! Escolha para onde ir\n")
+            self.dinheiro += 1
+            print("São "+str(relogio)+". ")
+        else:
+            print('''VOCÊ NÃO PODE TRABALHAR: SUAS ATRIBUÍÇÕES VITAIS ESTÃO MUITO BAIXA
+            VEJA OS TEUS ATRIBUTOS''')
 
     def mercado(self):
         print('VOCÊ CHEGOU AO MERCADO!')
@@ -210,7 +235,7 @@ class Steve:
             [ 3 ]    FINALIZAR A COMPRA
             [ 4 ]    NÃO/VOLTAR
             --> : '''))
-            somar = (ce * 80.0) + ( ag * 15.0)
+            somar = ce * 80.0 + ag * 15.0
             if per == 1:
                 ce += 1
             elif per == 2:
@@ -231,8 +256,8 @@ class Steve:
                     print("São "+str(relogio)+". ")
                     print( self.map())
                
-                elif per1 == 1:
-                    self.Comprar()
+                elif per1 == 1 and self.dinheiro >= somar:
+                    self.comprar()
                     print('OBRIGADA E VOLTE SEMPRE!')
                     print("São "+str(relogio)+". ")
                     print( self.map())
