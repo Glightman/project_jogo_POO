@@ -267,3 +267,69 @@ class Steve:
                     
             else:
                 print('OPÇÃO INVÁLIDA')
+
+
+ 
+
+
+class AcessoSeguro: 
+    def __init__(self, usuario, senha):
+        self.__usuario = usuario
+        self.__senha = senha
+
+    @property
+    def usuario(self):
+        return self.__usuario
+
+    @property
+    def senha(self):
+        return self.__senha
+
+    @usuario.setter
+    def usuario(self, novoUsuario):
+        self.__usuario = novoUsuario
+        
+    @senha.setter
+    def senha(self,novaSenha):
+        self.__senha = novaSenha
+
+    usuario = " "
+    senha = " "       
+
+    usuario = input('CADASTRE SEU USUÁRIO DE ACESSO: ')
+    senha =   input('CADASTRE SUA SENHA DE ACESSO: ')
+
+    print(f"""
+    ESTES SÃO SEUS DADOS DE ACESSO, MEMORIZE -OS :
+    USUÁRIO : {usuario}
+    SENHA :   {senha}
+    """)
+
+    while True:
+        alterar = int(input("""
+        DESEJA ALTERAR USUÁRIO OU SENHA?
+        0 - MANTER
+        1 - ALTERAR USUÁRIO
+        2 - ALTERAR SENHA
+    """) )
+        if alterar not in (0,1,2) :
+            print('OPÇÃO INVÁLIDA')   
+        elif alterar == 1 :
+            usuario = input('INFORME SEU NOVO USUÁRIO DE ACESSO: ')
+        elif alterar == 2 :
+            senha = input('INFORME SUA NOVA SENHA DE ACESSO: ')
+        else :     
+            break
+    print('INFORME USUÁRIO E SENHA')
+
+    usuarioA = input('USUÁRIO: ')
+    senhaA = input('SENHA: ')
+    while usuarioA != usuario or senhaA != senha :
+        print('''
+        USUÁRIO OU SENHA NÃO ENCONTRADO(S)
+        VERIFIQUE SEUS DADOS DE ACESSO
+        E TENTE NOVAMENTE''')
+        usuarioA = input('''
+        USUÁRIO: ''')
+        senhaA = input('''
+        SENHA: ''')

@@ -1,8 +1,10 @@
 from player import Steve
 from relogio import Relogio
+from player import AcessoSeguro
 personagem = Steve()
 relogio = Relogio()
 dia = ''
+usuario = AcessoSeguro()
 
 
 def decor():
@@ -10,6 +12,7 @@ def decor():
 decor()
 print('-=-=-=-=- \033[1m\033[33mSEJA BEM VINDO AO "SIMULADOR DE VIDA"\033[04;37m -=-=-=-=-')
 decor()
+
 print("São "+str(relogio)+". ")
 print('AJUDE O STEVE A TOMAR DECISÕES EM SEU DIA DIA.')
 decor()
