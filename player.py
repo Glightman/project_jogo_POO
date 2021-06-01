@@ -256,7 +256,7 @@ class Steve:
                     print("São "+str(relogio)+". ")
                     print( self.map())
                
-                elif per1 == 1 and self.dinheiro >= somar:
+                elif per1 == 1 :
                     self.comprar()
                     print('OBRIGADA E VOLTE SEMPRE!')
                     print("São "+str(relogio)+". ")
