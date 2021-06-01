@@ -21,6 +21,8 @@ while True:
     [ 0 ] NÃO (sair)
     --> : '''))
     if mapa == 1:
+        personagem.fome = 5
+        personagem.sede = 5
         personagem.map()
     elif mapa == 0:
         print('VOCÊ FINALIZOU O JOGO!')
